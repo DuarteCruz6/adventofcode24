@@ -28,8 +28,6 @@ def check(index, page):
             return False
     return True
     
-    
-
 #1176
 #21
 for i in range(1176):
@@ -39,17 +37,15 @@ for i in range(1176):
     else:
         dic[a]=[b]
 
-
 #190
 #6
 for i in range(190):
     seq=input().split(",")
     checkSeq(seq)
 
-
 total = 0
 for seq in ans:
-    seq = list(seq)  # Converter de volta para lista
+    seq = list(seq)  #Back to list
     total += int(seq[len(seq) // 2])
 
 print(total)

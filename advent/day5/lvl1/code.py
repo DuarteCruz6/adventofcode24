@@ -5,7 +5,6 @@ def check(index,page):
     global dic
     try:
         keys = dic[page]
-
         for after in keys.split(","):
             if after in seq[0:index]:
                 return False
@@ -24,7 +23,6 @@ for i in range(1176):
         dic[a]=b+","
 
 for i in range(190):
-    
     a=True
     seq=input().split(",")
     for index in range(len(seq)):
