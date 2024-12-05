@@ -1,89 +1,89 @@
-tabela = []
+matrix = []
 total = 0
 
 for i in range(140):
-    linha = input()
+    line = input()
     temp = []
-    for letra in linha:
-        temp.append(letra)
-    tabela.append(temp)
+    for letter in line:
+        temp.append(letter)
+    matrix.append(temp)
 
 
-def verificarLinha(linha, coluna):
+def verifyLine(line, column):
     global total
     try:
-        # Verifica "SAMX" para trás
-        if tabela[linha][coluna-3:coluna+1] == ["S", "A", "M", "X"]:
+        #Verify "SAMX" 
+        if matrix[line][column-3:column+1] == ["S", "A", "M", "X"]:
             total += 1
-        # Verifica "XMAS" para a frente
-        if tabela[linha][coluna:coluna+4] == ["X", "M", "A", "S"]:
+        #Verify "XMAS"
+        if matrix[line][column:column+4] == ["X", "M", "A", "S"]:
             total += 1
     except IndexError:
         pass
 
 
-def verificarDiagonais(linha, coluna):
+def verifyDiagonals(line, column):
     global total
     try:
-        # Direita superior
+        #to the right and upwards
         if (
-            tabela[linha-1][coluna+1] == "M"
-            and tabela[linha-2][coluna+2] == "A"
-            and tabela[linha-3][coluna+3] == "S"
+            matrix[line-1][column+1] == "M"
+            and matrix[line-2][column+2] == "A"
+            and matrix[line-3][column+3] == "S"
         ):
             total += 1
-        # Esquerda superior
+        #to the left and upwards
         if (
-            tabela[linha-1][coluna-1] == "M"
-            and tabela[linha-2][coluna-2] == "A"
-            and tabela[linha-3][coluna-3] == "S"
+            matrix[line-1][column-1] == "M"
+            and matrix[line-2][column-2] == "A"
+            and matrix[line-3][column-3] == "S"
         ):
             total += 1
-        # Direita inferior
+        #to the right and downwards
         if (
-            tabela[linha+1][coluna+1] == "M"
-            and tabela[linha+2][coluna+2] == "A"
-            and tabela[linha+3][coluna+3] == "S"
+            matrix[line+1][column+1] == "M"
+            and matrix[line+2][column+2] == "A"
+            and matrix[line+3][column+3] == "S"
         ):
             total += 1
-        # Esquerda inferior
+        #to the left and downwards
         if (
-            tabela[linha+1][coluna-1] == "M"
-            and tabela[linha+2][coluna-2] == "A"
-            and tabela[linha+3][coluna-3] == "S"
-        ):
-            total += 1
-    except IndexError:
-        pass
-
-
-def verificarColuna(linha, coluna):
-    global total
-    try:
-        # Para cima
-        if (
-            tabela[linha-1][coluna] == "M"
-            and tabela[linha-2][coluna] == "A"
-            and tabela[linha-3][coluna] == "S"
-        ):
-            total += 1
-        # Para baixo
-        if (
-            tabela[linha+1][coluna] == "M"
-            and tabela[linha+2][coluna] == "A"
-            and tabela[linha+3][coluna] == "S"
+            matrix[line+1][column-1] == "M"
+            and matrix[line+2][column-2] == "A"
+            and matrix[line+3][column-3] == "S"
         ):
             total += 1
     except IndexError:
         pass
 
 
-for linha in range(len(tabela)):
-    for coluna in range(len(tabela[linha])):
-        letra = tabela[linha][coluna]
-        if letra == "X":
-            verificarLinha(linha, coluna)
-            verificarDiagonais(linha, coluna)
-            verificarColuna(linha, coluna)
+def verifyColumn(line, column):
+    global total
+    try:
+        #Updwards
+        if (
+            matrix[line-1][column] == "M"
+            and matrix[line-2][column] == "A"
+            and matrix[line-3][column] == "S"
+        ):
+            total += 1
+        #Downwards
+        if (
+            matrix[line+1][column] == "M"
+            and matrix[line+2][column] == "A"
+            and matrix[line+3][column] == "S"
+        ):
+            total += 1
+    except IndexError:
+        pass
+
+
+for line in range(len(matrix)):
+    for column in range(len(matrix[line])):
+        letter = matrix[line][column]
+        if letter == "X":
+            verifyLine(line, column)
+            verifyDiagonals(line, column)
+            verifyColumn(line, column)
 
 print(total)
