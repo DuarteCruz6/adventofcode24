@@ -1,42 +1,42 @@
-tabela=[]
+matrix=[]
 total=0
 #150
 for i in range(150):
     total=0
-    linha=input()
+    line=input()
     temp=[]
-    for letra in linha:
-        temp.append(letra)
-    tabela.append(temp)
+    for letter in line:
+        temp.append(letter)
+    matrix.append(temp)
 
-def verificarDireita(linha,coluna):
+def verifyRightSide(line,column):
     global total
     try:
-        if linha-1>-1 and coluna-1>-1:
-            if tabela[linha-1][coluna+1]=="M" and tabela[linha+1][coluna-1]=="S":
+        if line-1>-1 and column-1>-1:
+            if matrix[line-1][column+1]=="M" and matrix[line+1][column-1]=="S":
                 return True
-            elif tabela[linha-1][coluna+1]=="S" and tabela[linha+1][coluna-1]=="M":
+            elif matrix[line-1][column+1]=="S" and matrix[line+1][column-1]=="M":
                 return True
     except:
         return False
     
-def verificarEsquerda(linha,coluna):
+def verifyLeftSide(line,column):
     global total
     try:
-        if linha-1>-1 and coluna-1>-1:
-            if tabela[linha-1][coluna-1]=="M" and tabela[linha+1][coluna+1]=="S":
+        if line-1>-1 and column-1>-1:
+            if matrix[line-1][column-1]=="M" and matrix[line+1][column+1]=="S":
                 return True
-            elif tabela[linha-1][coluna-1]=="S" and tabela[linha+1][coluna+1]=="M":
+            elif matrix[line-1][column-1]=="S" and matrix[line+1][column+1]=="M":
                 return True
     except:
         return False
         
-for linha in range(len(tabela)):
-    string = tabela[linha]
-    for coluna in range(len(string)):
-        letra = string[coluna]
-        if letra=="A":
-            if verificarDireita(linha,coluna) and verificarEsquerda(linha,coluna):
+for line in range(len(matrix)):
+    string = matrix[line]
+    for column in range(len(string)):
+        letter = string[column]
+        if letter=="A":
+            if verifyRightSide(line,column) and verifyLeftSide(line,column):
                 total+=1
             
 print(total)
